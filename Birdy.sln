@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.24720.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Birdy.Data", "Birdy.Data\Birdy.Data.csproj", "{1EE59973-2018-45BE-80ED-0ACF833186D7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Birdy.WPF", "Birdy.WPF\Birdy.WPF.csproj", "{11567E92-BDAC-4809-9C74-2EB110DB8736}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1EE59973-2018-45BE-80ED-0ACF833186D7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1EE59973-2018-45BE-80ED-0ACF833186D7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1EE59973-2018-45BE-80ED-0ACF833186D7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1EE59973-2018-45BE-80ED-0ACF833186D7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{11567E92-BDAC-4809-9C74-2EB110DB8736}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{11567E92-BDAC-4809-9C74-2EB110DB8736}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{11567E92-BDAC-4809-9C74-2EB110DB8736}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{11567E92-BDAC-4809-9C74-2EB110DB8736}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

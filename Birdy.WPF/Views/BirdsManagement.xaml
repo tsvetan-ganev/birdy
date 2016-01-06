@@ -1,0 +1,159 @@
+﻿<UserControl x:Class="Birdy.WPF.Views.BirdsManagement"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Birdy"
+      xmlns:ViewModel="clr-namespace:Birdy.Data.ViewModels;assembly=Birdy.Data"
+      xmlns:Model="clr-namespace:Birdy.Data.Models;assembly=Birdy.Data"
+      xmlns:sys="clr-namespace:System;assembly=mscorlib"
+      mc:Ignorable="d" 
+      d:DesignHeight="500" d:DesignWidth="600"
+      Name="BirdsManagementView"
+      >
+
+  <UserControl.Resources>
+    <ObjectDataProvider x:Key="BirdTypeEnum" MethodName="GetValues" ObjectType="{x:Type sys:Enum}">
+      <ObjectDataProvider.MethodParameters>
+        <x:Type TypeName="Model:BirdType" />
+      </ObjectDataProvider.MethodParameters>
+    </ObjectDataProvider>
+  </UserControl.Resources>
+
+  <Grid>
+    <Grid.ColumnDefinitions>
+      <ColumnDefinition Width="3*"/>
+      <ColumnDefinition Width="4*"/>
+    </Grid.ColumnDefinitions>
+
+    <!-- Master -->
+    <ListView Grid.Column="0" Grid.RowSpan="2" 
+                  Name="birdsListViewMaster" IsSynchronizedWithCurrentItem="True"
+                  ScrollViewer.CanContentScroll="False"
+                  ItemContainerStyle="{StaticResource ListViewItem.ContainerStyle}"
+                  ItemsSource="{Binding ElementName=BirdsManagementView, Path=ViewModel}">
+      <ListView.ItemTemplate>
+        <DataTemplate DataType="ViewModel:BirdEntryViewModel">
+          <DockPanel HorizontalAlignment="Stretch" Margin="0, 10">
+            <Image Height="84" Width="84" ClipToBounds="True" DockPanel.Dock="Left"
+                   Source="{Binding Picture}" />
+
+            <TextBlock Margin="20,0" Width="160" Style="{StaticResource TextBlock.Heading}"
+                                   Text="{Binding Name}" DockPanel.Dock="Left"/>
+            <Button Width="60" DockPanel.Dock="Right" Margin="0,0" HorizontalAlignment="Right"
+                            Style="{StaticResource Button.Danger}"
+                            Content="Delete"
+                            Command="{Binding ElementName=BirdsManagementView, Path=ViewModel.RemoveCommand}"
+                            CommandParameter="{Binding}"/>
+          </DockPanel>
+        </DataTemplate>
+      </ListView.ItemTemplate>
+    </ListView>
+
+    <!-- Edit -->
+    <WrapPanel Orientation="Horizontal" Grid.Column="1" Margin="5,0,-5,0" Grid.RowSpan="2">
+      <UserControl x:Name="birdEntryUserControl" Margin="0,0,50,0"
+                     Content="{Binding ViewModel/, ElementName=BirdsManagementView}">
+        <UserControl.ContentTemplate>
+          <DataTemplate DataType="ViewModel:BirdEntryViewModel">
+            <GroupBox Padding="10">
+              <GroupBox.Header>Edit bird</GroupBox.Header>
+              <GroupBox.Content>
+                <StackPanel Orientation="Vertical">
+                  <StackPanel Name="editName"  Orientation="Horizontal" Style="{StaticResource InputContainer}">
+                    <Label Content="Name:"/>
+                    <TextBox Style="{StaticResource TextInput}" Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}"/>
+                  </StackPanel>
+
+                  <StackPanel Name="editDescription" Orientation="Horizontal" Style="{StaticResource InputContainer}">
+                    <Label Content="Description:"/>
+                    <TextBox Style="{StaticResource TextInput}" Text="{Binding Description}" 
+                                         TextWrapping="Wrap" AcceptsReturn="True" MaxHeight="300" />
+                  </StackPanel>
+
+                  <StackPanel Name="editLength" Orientation="Horizontal" Style="{StaticResource InputContainer}">
+                    <Label Content="Length:"/>
+                    <TextBox Style="{StaticResource TextInput}" Text="{Binding Length}"/>
+                  </StackPanel>
+
+                  <StackPanel Name="editColor" Orientation="Horizontal" Style="{StaticResource InputContainer}">
+                    <Label Content="Base color:"/>
+                    <TextBox Style="{StaticResource TextInput}" Text="{Binding BaseColor}"/>
+                  </StackPanel>
+
+                  <StackPanel Name="editType" Orientation="Horizontal" Style="{StaticResource InputContainer}">
+                    <Label Content="Type:"/>
+                    <ComboBox Height="25" Style="{StaticResource DropdownList}" 
+                              SelectedItem="{Binding Type}"
+                              ItemsSource="{Binding Source={StaticResource BirdTypeEnum}}"/>
+                  </StackPanel>
+
+                  <StackPanel Name="editPicture" Orientation="Horizontal" Style="{StaticResource InputContainer}">
+                    <Label Content="Picture:"/>
+                    <TextBox Style="{StaticResource TextInput}" Text="{Binding Picture}"/>
+                  </StackPanel>
+
+                  <DockPanel Name="actions" Width="180" Margin="80, 20, 0, 0">
+                    <Button Style="{StaticResource Button.Success}"
+                            Content="Save" Margin="5,0,0,0"
+                            Command="{Binding ViewModel.UpdateCommand, ElementName=BirdsManagementView}"
+                            CommandParameter="{Binding}"/>
+
+                    <Button Style="{StaticResource Button.Base}"
+                            Content="Add new bird" Margin="5,0,0,0"
+                            Command="{Binding ViewModel.AddCommand, ElementName=BirdsManagementView}"
+                            CommandParameter="{Binding}"/>
+                  </DockPanel>
+                </StackPanel>
+              </GroupBox.Content>
+            </GroupBox>
+          </DataTemplate>
+        </UserControl.ContentTemplate>
+      </UserControl>
+
+      <!-- Details -->
+      <UserControl x:Name="birdDetailsUserControl"
+                     Content="{Binding ViewModel/, ElementName=BirdsManagementView}">
+        <UserControl.ContentTemplate>
+          <DataTemplate DataType="ViewModel:BirdEntryViewModel">
+            <GroupBox Padding="10">
+              <GroupBox.Header>Bird details</GroupBox.Header>
+              <GroupBox.Content>
+                <StackPanel Orientation="Vertical">
+
+                  <Image Height="192" Width="192" ClipToBounds="True" HorizontalAlignment="Center" Source="{Binding Picture}" />
+                  <TextBlock Width="192" Text="{Binding Picture}" TextAlignment="Center" FontStyle="Italic" TextWrapping="Wrap"/>
+
+                  <StackPanel Orientation="Horizontal" Style="{StaticResource PropertyContainer}">
+                    <TextBlock Text="Name: " Style="{StaticResource PropertyLabel}" />
+                    <TextBlock FontWeight="Bold" Text="{Binding Name}"/>
+                  </StackPanel>
+
+                  <StackPanel Orientation="Horizontal" Style="{StaticResource PropertyContainer}">
+                    <TextBlock Text="Description: " Style="{StaticResource PropertyLabel}"/>
+                    <TextBlock FontWeight="Bold" Text="{Binding Description}" Width="180" TextWrapping="WrapWithOverflow" />
+                  </StackPanel>
+
+                  <StackPanel Orientation="Horizontal" Style="{StaticResource PropertyContainer}">
+                    <TextBlock Text="Length: " Style="{StaticResource PropertyLabel}" />
+                    <TextBlock FontWeight="Bold" Text="{Binding Length, StringFormat={}{0} cm}"/>
+                  </StackPanel>
+
+                  <StackPanel Orientation="Horizontal" Style="{StaticResource PropertyContainer}">
+                    <TextBlock Text="Base color: " Style="{StaticResource PropertyLabel}" />
+                    <TextBlock FontWeight="Bold" Text="{Binding BaseColor}"/>
+                  </StackPanel>
+
+                  <StackPanel Orientation="Horizontal" Style="{StaticResource PropertyContainer}">
+                    <TextBlock Text="Type: " Style="{StaticResource PropertyLabel}" />
+                    <TextBlock FontWeight="Bold" Text="{Binding Type}" />
+                  </StackPanel>
+                </StackPanel>
+              </GroupBox.Content>
+            </GroupBox>
+          </DataTemplate>
+        </UserControl.ContentTemplate>
+      </UserControl>
+    </WrapPanel>
+  </Grid>
+</UserControl>

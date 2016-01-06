@@ -1,0 +1,44 @@
+﻿<UserControl x:Class="Birdy.WPF.Views.Index"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Birdy"
+      mc:Ignorable="d"
+      >
+
+  <DockPanel>
+    <Border Background="Honeydew" Name="Header" DockPanel.Dock="Top" BorderThickness="0,0,0,2" BorderBrush="LightGray" Padding="0,0,0,10">
+      <TextBlock Style="{StaticResource TextBlock.Title}"
+                   Text="NaturePoint Birdcounter Application" />
+    </Border>
+
+    <StackPanel Name="ContentContainer"  DockPanel.Dock="Top"  Orientation="Vertical">
+      <TextBlock Style="{StaticResource TextBlock.Paragraph}">Lorem ipsum dolor sit amet, ea vis nibh natum omittam. Vide ipsum tation qui ea. Ad paulo pertinax per, mei alii unum delicatissimi ea. Omittam mediocrem mei no, dicant homero pro cu.
+
+Eu esse errem menandri duo, vero maiorum eum ut. Quis posse perfecto nec at. Cu sint elit habeo quo, hendrerit pertinacia ea pro, quod dolore legimus eam ei. Sit in malis lobortis definitionem. Ut fugit facilis graecis eos. Sale eligendi signiferumque an eos, per ex paulo incorrupte disputationi. An novum integre instructior vix, ius id animal corpora consetetur.
+      </TextBlock>
+
+      <TextBlock Style="{StaticResource TextBlock.Paragraph}">
+            Qui ut iudico cetero. Mea inciderint intellegebat ei. Tale exerci cu eam. Ex quis viderer complectitur duo.
+
+Sed lorem vidisse nusquam cu. Justo inciderint eu qui, in eum quaeque prodesset. Justo accumsan usu id. Nemore meliore theophrastus at qui, in mel melius saperet, mutat delicata molestiae usu ut. Impetus vocibus usu ut. Ad putant atomorum ius, mei cu docendi percipit facilisi.
+
+Facer scaevola rationibus eam et. In iudico tollit his. Sit cu nonumes alienum constituto, omittam forensibus repudiandae vis cu. Mel no minim dignissim incorrupte, timeam quaestio eum ei. Putent dicunt vidisse id pro, ei usu errem scaevola scribentur, ea qui aliquid placerat menandri.
+      </TextBlock>
+
+      <TextBlock Style="{StaticResource TextBlock.Paragraph}">
+                Ad vim putant neglegentur. At ius stet everti, lorem zril menandri vis cu, nec ne dico mediocrem delicatissimi. Sit ea suas ubique meliore, legere assentior mel ex. Ex duis habeo viderer vel, ut suscipit appetere gloriatur ius, usu error aliquip deserunt te.
+
+Nec option nominavi percipit ne. Eruditi molestiae vis ex. Pro tollit labores efficiantur ei. Eos inermis menandri aliquando ea. Primis eligendi accusamus eos an, cu sint quaeque perpetua eos.
+      </TextBlock>
+    </StackPanel>
+
+    <Border DockPanel.Dock="Bottom" Background="Honeydew" VerticalAlignment="Bottom" BorderThickness="0,2,0,0" BorderBrush="LightGray" Padding="0">
+      <StackPanel Name="Footer" Orientation="Vertical" HorizontalAlignment="Center">
+        <TextBlock Margin="10,0" Name="Author" Text="Tsvetan Ganev (tsvetan.ganev@hotmail.com)" />
+        <TextBlock Margin="10, 0" Name="Copyright" Text="Copyright 2016 ©" TextAlignment="Center" />
+      </StackPanel>
+    </Border>
+  </DockPanel>
+</UserControl>
